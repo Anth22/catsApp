@@ -1,0 +1,17 @@
+
+<mat-grid-list cols="3" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let cat of dataSetCats" >
+
+
+        <div style="position:relative;">
+            <div style="position:absolute;z-index:1;  ">
+                <img src="{{cat['url']}}" style="width: 250px; height: auto">
+            </div>
+            <div style="position:absolute; z-index:2;color: white;font-weight: 400;width: max-content;background-color: darkslategrey;">
+                <div *ngIf="cat?.like>0">
+                    <span style="vertical-align: text-bottom;margin-right: 5px;margin-top: 3px;margin-left: 3px;">Score : {{cat?.like}} like(s)</span>
+                </div>
+            </div> 
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>

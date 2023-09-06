@@ -1,0 +1,34 @@
+
+<mat-paginator [length]="length"
+[pageSize]="pageSize"
+[pageSizeOptions]="pageSizeOptions" aria-label="Selectionner une page" 
+(page)="OnPageChange($event)">
+</mat-paginator>
+
+
+<mat-grid-list cols="3" rowHeight="3:2">
+    <mat-grid-tile *ngFor="let cat of dataSetCatsFiltre"  style="display: grid;" >
+
+        <mat-card class="example-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Shiba Inu</mat-card-title>
+                <mat-card-subtitle>{{cat?.id}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{cat?.url}}" style="max-height: 150px;min-height: 100px; max-width: 150px;" >
+            <mat-card-content>
+                <p>Voter pour votre image de chat favorite !</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-icon-button class="example-icon favorite-icon" color="accent" aria-label="Example icon-button with heart icon" (click)="vote(cat)">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+                <div>
+                    <span style="vertical-align: text-bottom;margin-right: 5px;">{{cat?.like}}</span>
+                    <mat-icon aria-hidden="false" svgIcon="thumbs-up"  *ngIf="cat?.like>0" ></mat-icon>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+
+</mat-grid-list>
