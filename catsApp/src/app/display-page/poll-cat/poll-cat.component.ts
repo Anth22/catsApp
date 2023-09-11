@@ -23,6 +23,8 @@ const THUMBUP_ICON =
 /**Page de sondage pour voter sur les images de chats qui prefère */
 export class PollCatComponent {
   // MatPaginator Inputs
+  startIndex: number = 0
+  endIndex: number = 3
   length: number = 0;
   pageSize: number = 3;  //displaying three cards each row
   pageSizeOptions: number[] = [3, 6, 9, 25];
@@ -39,8 +41,8 @@ export class PollCatComponent {
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
     this.catDataSetSubscription = this.catService.catDataSetSubscription$.subscribe(value => {
       this.dataSetCats = value
-      this.dataSetCatsFiltre = [].concat(value);  
-      this.dataSetCatsFiltre = this.dataSetCatsFiltre.slice(0, this.pageSize)
+      this.dataSetCatsFiltre = [].concat(value);
+      this.dataSetCatsFiltre = this.dataSetCatsFiltre.slice(this.startIndex, this.endIndex)
       this.length = this.dataSetCats?.length     /**Nombre total d'images de chat pour la pagination*/
     })
   }
@@ -61,12 +63,12 @@ export class PollCatComponent {
   }
 
   OnPageChange(event: PageEvent){
-    let startIndex = event.pageIndex * event.pageSize;
-    let endIndex = startIndex + event.pageSize;
-    if(endIndex > this.length){
-      endIndex = this.length;
+    this.startIndex = event.pageIndex * event.pageSize;
+    this.endIndex = this.startIndex + event.pageSize;
+    if(this.endIndex > this.length){
+      this.endIndex = this.length;
     }
-    this.dataSetCatsFiltre = this.dataSetCats.slice(startIndex, endIndex)
+    this.dataSetCatsFiltre = this.dataSetCats.slice(this.startIndex, this.endIndex)
   }
 
   ngOnDestroy(){
