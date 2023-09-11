@@ -13,5 +13,5 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CATSAPP_BF4D6 }}'
-          projectId: catsapp-bf4d6
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CATSAPP2_4A283 }}'
+          projectId: catsapp2-4a283
